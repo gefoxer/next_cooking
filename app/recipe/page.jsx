@@ -5,7 +5,7 @@ import Styles from '@/styles/recipe.module.css'
 
 export default function page() {
   return (
-    <div>
+    <div className={Styles.owner}>
       <Header />
       <section className={Styles.recipe}>
         

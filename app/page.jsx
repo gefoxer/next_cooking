@@ -58,7 +58,9 @@ export default function Home() {
           <img src="./img/back.jpg" alt="" />
         </div>
       </section>
-
+<section>
+  <div></div>
+</section>
       <section className={styles.categories}>
         <div className={styles.search_category}>
           <p>Categories</p>

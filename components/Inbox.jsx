@@ -14,9 +14,7 @@ export default function Inbox() {
                 <button type="submit" className={styles.subscribe_button}>Subscribe</button>
             </div>
           </form>
-
         </div>
-        <img src="" alt="" />
     </section>
   )
 }

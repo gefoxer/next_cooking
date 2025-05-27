@@ -2,7 +2,6 @@ import Header from '@/components/Header'
 import Dish from '@/components/Dish'
 import styles from '@/styles/page.module.css'
 import Footer from '@/components/Footer'
-import Inst from '@/components/Inst'
 import Inbox from '@/components/Inbox'
 import DishMini from '@/components/DishMini'
 
@@ -20,14 +19,13 @@ export default function Home() {
               <img src="./img/text.jpg" alt="" />
               <p>Hot Recipes</p>
             </div>
-            <h2>
-              {' '}
-              Spicy delicious <br /> chicken wings{' '}
+            <h2> 
+              Spicy delicious <br /> chicken wings
             </h2>
             <p>
               Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqut enim ad
-              minim{' '}
+              minim
             </p>
             <div className={styles.hot_table}>
               <div className={styles.hot_time}>
@@ -222,10 +220,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
-        
-      </section>
-
       <section className={styles.recipe_day} >
         <div className={styles.day_info}>
           <p className={styles.day_info_main}>Try this delicious recipe <br /> to make your day</p>
@@ -241,8 +235,6 @@ export default function Home() {
           <DishMini />
           <DishMini />
           <DishMini />
-          
-          
         </div>
      
 

@@ -1,0 +1,51 @@
+.dish {
+  max-width: 290px;
+  min-height: 316px;
+}
+
+.dish_img {
+  border-radius: 20px;
+}
+
+.dish_name {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -1.02px;
+  padding-top: 16px;
+}
+
+.dish_timer {
+  display: flex;
+  gap: 13px;
+}
+
+.dish_knife {
+  display: flex;
+  gap: 13px;
+}
+
+.dish_info {
+  display: flex;
+  gap: 24px;
+  padding-top: 24px;
+}
+
+.dish div div p {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+}
+
+.like_dish {
+  position: relative;
+}
+
+.like_dish_rel {
+  position: absolute;
+  top: 16px;
+  left: 255px;
+  transform: translateX(-50%);
+  cursor: pointer;
+}

@@ -4,8 +4,12 @@ import styles from '@/styles/page.module.css'
 import Footer from '@/components/Footer'
 import Inbox from '@/components/Inbox'
 import DishMini from '@/components/DishMini'
+import { redirect } from 'next/navigation';
 
 export default function Home() {
+
+  
+
   return (
     <div>
       <Header />
@@ -19,7 +23,7 @@ export default function Home() {
               <img src="./img/text.jpg" alt="" />
               <p>Hot Recipes</p>
             </div>
-            <h2> 
+            <h2>
               Spicy delicious <br /> chicken wings
             </h2>
             <p>
@@ -56,9 +60,9 @@ export default function Home() {
           <img src="./img/back.jpg" alt="" />
         </div>
       </section>
-<section>
-  <div></div>
-</section>
+      <section>
+        <div></div>
+      </section>
       <section className={styles.categories}>
         <div className={styles.search_category}>
           <p>Categories</p>
@@ -236,7 +240,7 @@ export default function Home() {
           <DishMini />
           <DishMini />
         </div>
-     
+
 
       </section>
 
@@ -245,10 +249,10 @@ export default function Home() {
       </section>t
 
 
-      
 
 
-      
+
+
 
       <Footer />
     </div>

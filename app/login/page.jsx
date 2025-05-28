@@ -28,7 +28,7 @@ export default function LoginPage() {
       <div className={styles.loginCard}>
         <h1 className={styles.title}>Вход в аккаунт</h1>
         <p className={styles.subtitle}>Введите свои данные для входа</p>
-        
+
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
             <label htmlFor="email" className={styles.label}>Email</label>
@@ -43,7 +43,7 @@ export default function LoginPage() {
               required
             />
           </div>
-          
+
           <div className={styles.inputGroup}>
             <label htmlFor="password" className={styles.label}>Пароль</label>
             <input
@@ -57,18 +57,19 @@ export default function LoginPage() {
               required
             />
           </div>
-          
+
           <div className={styles.forgotPassword}>
             <Link href="/forgot-password" className={styles.forgotLink}>
               Забыли пароль?
             </Link>
           </div>
-          
-          <button type="submit" className={styles.submitButton}>
-            Войти
-          </button>
+          <Link href="/" className={styles.submitButton}>
+            <button type="submit" >
+              Войти
+            </button>
+          </Link>
         </form>
-        
+
         <p className={styles.registerText}>
           Ещё нет аккаунта?{' '}
           <Link href="/register" className={styles.registerLink}>

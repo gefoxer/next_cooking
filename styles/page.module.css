@@ -100,7 +100,7 @@
 
 .john {
   display: flex;
-  width: 163px;
+  width: 170px;
 
   align-items: center;
 }
@@ -110,7 +110,7 @@
 }
 
 .john div {
-  width: 97px;
+  min-width: 97px;
 }
 
 .john div p {

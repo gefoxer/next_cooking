@@ -1,19 +1,21 @@
-import Header from '@/components/Header'
-import Dish from '@/components/Dish'
-import styles from '@/styles/page.module.css'
-import Footer from '@/components/Footer'
-import Inbox from '@/components/Inbox'
-import DishMini from '@/components/DishMini'
-import { redirect } from 'next/navigation';
+import Header from "@/components/Header";
+import Dish from "@/components/Dish";
+import styles from "@/styles/page.module.css";
+import Footer from "@/components/Footer";
+import Inbox from "@/components/Inbox";
+import DishMini from "@/components/DishMini";
+import { PrismaClient } from "@prisma/client";
 
-export default function Home() {
+export default async function Home() {
+  const prisma = new PrismaClient();
 
-  
+  const cards = await prisma.card.findMany();
+
+  const minicards = await prisma.minicard.findMany();
 
   return (
     <div>
       <Header />
-
       <section className={styles.hot}>
         <img className={styles.position} src="./img/badge.png" alt="" />
 
@@ -24,12 +26,13 @@ export default function Home() {
               <p>Hot Recipes</p>
             </div>
             <h2>
-              Spicy delicious <br /> chicken wings
+              {" "}
+              Spicy delicious <br /> chicken wings{" "}
             </h2>
             <p>
               Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqut enim ad
-              minim
+              minim{" "}
             </p>
             <div className={styles.hot_table}>
               <div className={styles.hot_time}>
@@ -60,9 +63,6 @@ export default function Home() {
           <img src="./img/back.jpg" alt="" />
         </div>
       </section>
-      <section>
-        <div></div>
-      </section>
       <section className={styles.categories}>
         <div className={styles.search_category}>
           <p>Categories</p>
@@ -74,9 +74,9 @@ export default function Home() {
           <div
             className={styles.categories_card}
             style={{
-              background: '#708246',
+              background: "#708246",
               background:
-                'linear-gradient(180deg, rgba(112, 130, 70, 0) 0%, rgba(112, 130, 70, 0.1) 100%)',
+                "linear-gradient(180deg, rgba(112, 130, 70, 0) 0%, rgba(112, 130, 70, 0.1) 100%)",
             }}
           >
             <div className={styles.categories_un_blur}>
@@ -92,9 +92,9 @@ export default function Home() {
           <div
             className={styles.categories_card}
             style={{
-              background: '#6CC63F',
+              background: "#6CC63F",
               background:
-                'linear-gradient(180deg, rgba(108, 198, 63, 0) 0%, rgba(108, 198, 63, 0.1) 100%)',
+                "linear-gradient(180deg, rgba(108, 198, 63, 0) 0%, rgba(108, 198, 63, 0.1) 100%)",
             }}
           >
             <div className={styles.categories_un_blur}>
@@ -110,9 +110,9 @@ export default function Home() {
           <div
             className={styles.categories_card}
             style={{
-              background: ' #CC261B',
+              background: " #CC261B",
               background:
-                'linear-gradient(180deg,rgba(204, 38, 27, 0) 0%, rgba(204, 38, 27, 0.1) 100%)',
+                "linear-gradient(180deg,rgba(204, 38, 27, 0) 0%, rgba(204, 38, 27, 0.1) 100%)",
             }}
           >
             <div className={styles.categories_un_blur}>
@@ -128,9 +128,9 @@ export default function Home() {
           <div
             className={styles.categories_card}
             style={{
-              background: '#F09E00',
+              background: "#F09E00",
               background:
-                'linear-gradient(180deg, rgba(240, 158, 0, 0) 0%, rgba(240, 158, 0, 0.1) 100%)',
+                "linear-gradient(180deg, rgba(240, 158, 0, 0) 0%, rgba(240, 158, 0, 0.1) 100%)",
             }}
           >
             <div className={styles.categories_un_blur}>
@@ -146,9 +146,9 @@ export default function Home() {
           <div
             className={styles.categories_card}
             style={{
-              background: '#6CC63F',
+              background: "#6CC63F",
               background:
-                'linear-gradient(180deg, rgba(108, 198, 63, 0) 0%, rgba(108, 198, 63, 0.1) 100%)',
+                "linear-gradient(180deg, rgba(108, 198, 63, 0) 0%, rgba(108, 198, 63, 0.1) 100%)",
             }}
           >
             <div className={styles.categories_un_blur}>
@@ -164,9 +164,9 @@ export default function Home() {
           <div
             className={styles.categories_card}
             style={{
-              background: '#6CC63F',
+              background: "#6CC63F",
               background:
-                'linear-gradient(180deg, rgba(108, 198, 63, 0) 0%, rgba(108, 198, 63, 0.1) 100%)',
+                "linear-gradient(180deg, rgba(108, 198, 63, 0) 0%, rgba(108, 198, 63, 0.1) 100%)",
             }}
           >
             <div className={styles.categories_un_blur}>
@@ -181,30 +181,25 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+  
       <section className={styles.best}>
         <div className={styles.best_text}>
           <h4>Simple and tasty recipes</h4>
           <p>
             Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do eiusmod
             tempor incididunt ut <br /> labore et dolore magna aliqut enim ad
-            minim{' '}
+            minim{" "}
           </p>
         </div>
 
-        <div className={styles.dish}>
-          <Dish />
-          <Dish />
-          <Dish />
-          <Dish />
-          <Dish />
-          <Dish />
-          <Dish />
-          <Dish />
-          <Dish />
+        <div className={styles.recipe_dish}>
+          {
+            cards.map((card) =>  <Dish card={card} />)
+          }
+         
+  
         </div>
       </section>
-
       <section className={styles.chef}>
         <div className={styles.chef_info}>
           <h3>
@@ -212,8 +207,8 @@ export default function Home() {
           </h3>
           <p className={styles.chef_info_p}>
             Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do <br />
-            eiusmod tempor incididunt ut labore et dolore magna aliqut enim{' '}
-            <br /> ad minim{' '}
+            eiusmod tempor incididunt ut labore et dolore magna aliqut enim{" "}
+            <br /> ad minim{" "}
           </p>
           <button className={styles.chef_button}>
             <p className={styles.chef_button_p}>Learn More</p>
@@ -223,38 +218,29 @@ export default function Home() {
           <img src="./img/happy_chef.png" alt="" />
         </div>
       </section>
-
-      <section className={styles.recipe_day} >
+      <section></section>
+      <section className={styles.recipe_day}>
         <div className={styles.day_info}>
-          <p className={styles.day_info_main}>Try this delicious recipe <br /> to make your day</p>
-          <p className={styles.day_info_help}>Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqut enim ad minim </p>
+          <p className={styles.day_info_main}>
+            Try this delicious recipe <br /> to make your day
+          </p>
+          <p className={styles.day_info_help}>
+            Lorem ipsum dolor sit amet, consectetuipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqut enim ad minim{" "}
+          </p>
         </div>
 
         <div className={styles.recipe_dish}>
-          <DishMini />
-          <DishMini />
-          <DishMini />
-          <DishMini />
-          <DishMini />
-          <DishMini />
-          <DishMini />
-          <DishMini />
+          {
+            minicards.map((minicard) => <DishMini minicard={minicard} />)
+          }
         </div>
-
-
       </section>
-
       <section className={styles.inbox}>
         <Inbox />
-      </section>t
-
-
-
-
-
-
-
+      </section>
+      t
       <Footer />
     </div>
-  )
+  );
 }

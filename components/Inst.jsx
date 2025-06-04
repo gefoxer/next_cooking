@@ -19,7 +19,11 @@ export default function Inst() {
             <img src="./img/shape.svg" alt="" />
           </div>
       </div>  
+
+
+
       <div>
+
       </div>
     </section>
   )

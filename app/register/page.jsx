@@ -1,78 +1,73 @@
-"use client";
-
-import { useState } from "react";
-import styles from "@/styles/register.module.css";
-import { useRouter } from "next/navigation";
+'use client';
+import { useState } from 'react';
+import Link from 'next/link';
+import styles from '@/styles/register.module.css';
+import Header from '@/components/Header';
 
 export default function RegisterPage() {
-  const [form, setForm] = useState({
-    email: "",
-    name: "",
-    address: "",
-    phone: "",
-    password: "",
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const router = useRouter();
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const res = await fetch("/api/register", {
-      method: "POST",
-      body: JSON.stringify(form),
-    });
-    if (res.ok) {
-      router.push("/api/auth/signin");
-    } else {
-      alert("Ошибка регистрации");
+    if (password !== confirmPassword) {
+      alert('Пароли не совпадают');
+      return;
     }
+    console.log('Registration attempt:', { email, password });
   };
 
   return (
-    <div className={styles.container}>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <h2>Регистрация</h2>
-        <input
-          type="text"
-          name="name"
-          placeholder="Имя"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="address"
-          placeholder="Адрес"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="phone"
-          placeholder="Телефон"
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Пароль"
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Зарегистрироваться</button>
-      </form>
-    </div>
+    <>
+      <Header />
+      <div className={styles.registerContainer}>
+        <div className={styles.registerForm}>
+          <h2>Регистрация</h2>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.formGroup}>
+              <label htmlFor="email">Электронная почта</label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="example@mail.com"
+                required
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="password">Пароль</label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+              />
+            </div>
+            <div className={styles.formGroup}>
+              <label htmlFor="confirm-password">Подтвердите пароль</label>
+              <input
+                id="confirm-password"
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+              />
+            </div>
+            <button type="submit" className={styles.submitButton}>
+              Зарегистрироваться
+            </button>
+          </form>
+          <p className={styles.loginLink}>
+            Уже есть аккаунт?{' '}
+            <Link href="/login">Войти</Link>
+          </p>
+        </div>
+      </div>
+    </>
   );
-}
+} 

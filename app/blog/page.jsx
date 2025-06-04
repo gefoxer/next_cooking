@@ -4,8 +4,17 @@ import React from 'react'
 import Styles from '@/styles/blog.module.css'
 import Inbox from '@/components/Inbox'
 import DishMini from '@/components/DishMini'
+import prisma from '@/lib/prisma'
 
-export default function page() {
+export default async function page() {
+
+  const minicards = await prisma.minicard.findMany({
+    take: 4,
+    orderBy: {
+      id: 'desc'
+    }
+  });
+
   return (
     <div className={Styles.owner}>
       <Header />
@@ -16,7 +25,7 @@ export default function page() {
         </div>
         <div className={Styles.full_img}>
           <div className={Styles.full_img_flex}>
-            <img src="./img/john.jpg" alt="" />
+            <img src="./img/john.jpg" alt="GEY" />
             <p>John Smith</p>
           </div>
           <div className={Styles.full_img_border}>
@@ -29,7 +38,7 @@ export default function page() {
       </section>
 
       <section className={Styles.img_chef}>
-        <img src="./img/cheffull.jpg" alt="" />
+        <img src="./img/cheffull.jpg" alt="GEY" />
       </section>
 
       <section className={Styles.guide}>
@@ -58,17 +67,13 @@ export default function page() {
             <h5>What is the biggest misconception that people have about being a professional chef?</h5>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ultrices odio. Nulla at congue diam, at dignissim turpis. Ut vehicula sed velit a faucibus. In feugiat vestibulum velit vel pulvinar. Fusce id mollis ex. Praesent feugiat elementum ex ut suscipit.</p>
           </div>
-        
-      </div>
-        <div className={Styles.guide_link}>
-          <p>SHARE THIS ON:</p>
-          <img src="./img/facebook.svg" alt="" />
-          <img src="./img/x.svg" alt="" />
-          <img src="./img/inst.svg" alt="" />
         </div>
-        
-
-      
+          <div className={Styles.guide_link}>
+            <p>SHARE THIS ON:</p>
+            <img src="./img/facebook.svg" alt="" />
+            <img src="./img/x.svg" alt="" />
+            <img src="./img/inst.svg" alt="" />
+          </div>
       </section>
 
       <section>
@@ -78,11 +83,9 @@ export default function page() {
       <section className={Styles.dish_blog}>
         <p className={Styles.dish_block_text}>Check out the delicious recipe</p>
         <div className={Styles.dish_flex}>
-          <div className={Styles.cost}><DishMini /></div>
-          <div className={Styles.cost}><DishMini /></div>
-          <div className={Styles.cost}><DishMini /></div>
-          <div className={Styles.cost}><DishMini /></div>
-         
+            {
+              minicards.map((minicard) => <DishMini minicard={minicard} />)
+            }
         </div>
 
       </section>

@@ -1,3 +1,8 @@
+.owner {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 .full {
     max-width: 1221px;
     margin: 0 auto;
@@ -139,11 +144,22 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 10px;
-}
-
-.cost {
     margin-top: 50px;
 }
+
+@media (max-width: 605px) {
+    .dish_flex {
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 1226px) {
+    .dish_flex {
+        justify-content: space-around;
+    }
+}
+
 
 @media (max-width: 320px) {
     .dish_flex {
